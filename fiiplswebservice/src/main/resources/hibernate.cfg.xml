@@ -12,8 +12,8 @@
         <property name="connection.username"></property>
         <property name="connection.password"></property>
          
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
          
-        <mapping class="edu.fiipls.entities.Contact"/>
+        <mapping class="edu.fiipls.entities.LearningResults"/>
     </session-factory>
 </hibernate-configuration>

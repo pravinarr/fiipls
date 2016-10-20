@@ -9,7 +9,7 @@ public class BaseDBTransaction {
 	Transaction tx = null;
 	
 	public void start(){
-		session = DBConfiguration.getInstance().getCurrentSession();
+		session = DBConfiguration.getInstance().openSession();
 		tx = session.beginTransaction();
 	}
 	
