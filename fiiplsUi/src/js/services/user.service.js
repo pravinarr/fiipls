@@ -9,7 +9,7 @@ angular
 
     var token;
 
-    var stage = 3;
+    var stage = 0;
 
     var option = 0;
 
