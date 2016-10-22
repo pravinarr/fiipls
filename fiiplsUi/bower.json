@@ -1,0 +1,47 @@
+{
+  "name": "fiiplsUi",
+  "version": "0.0.1",
+  "description": "FIIPLS 1.0",
+  "homepage": "",
+  "authors": [
+    "Praveenkumar Ramasamy<pravinarr@gmail.com>"
+  ],
+  "contributors": [],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rdash-ui": "1.0.*",
+    "angular": "~1.5.0",
+    "angular-cookies": "~1.5.0",
+    "angular-bootstrap": "~1.1.0",
+    "angular-ui-router": "^0.2.15",
+    "angular-ui-bootstrap": "0.14.3",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "angular-pageslide-directive": "^1.2.7",
+    "ng-dialog": "^0.6.2",
+    "checklist-model": "~0.4.0",
+    "ngDatepicker": "",
+    "angular-multiple-select": "^1.1.2",
+    "acute-select": "",
+    "angular-sanitize": "~1.5.0",
+    "angular-ui-select": "",
+    "angular-confirm-modal": "^1.2.6",
+    "angular-chart": "^0.5.0",
+    "angularjs-slider":"^5.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdash/rdash-angular"
+  },
+  "resolutions": {
+    "angular": "^1.5.8"
+  }
+}

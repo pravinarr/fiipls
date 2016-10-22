@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" ng-app="RDash">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>CompuPIE</title>
+        <!-- STYLES -->
+        <!-- build:css lib/css/main.min.css -->
+        <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
+        <link rel="stylesheet" type="text/css" href="css/overlay.css">
+        <link rel="stylesheet" type="text/css" href="css/LineChart.css">
+        <link rel="stylesheet" type="text/css" href="components/ngDatepicker/src/css/ngDatepicker.css">
+        <link rel="stylesheet" type="text/css" href="components/ng-dialog/css/ngDialog.css" />
+        <link rel="stylesheet" type="text/css" href="components/ng-dialog/css/ngDialog-theme-default.css" />
+        <link rel="stylesheet" type="text/css" href="components/angular-multiple-select/build/multiple-select.min.css" >
+        <link rel="stylesheet" type="text/css" href="components/acute-select/acute/acute.select/acute.select.css"/>
+        <link rel="stylesheet" type="text/css" href="components/angular-ui-select/dist/select.css"/>
+        <link rel="stylesheet" type="text/css" href="components/angularjs-slider/dist/rzslider.css"/>
+         <!-- endbuild -->
+        <!-- SCRIPTS -->
+        <!-- build:js lib/js/main.min.js -->
+        <script type="text/javascript" src="components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
+        <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="components/ngDatepicker/src/js/ngDatepicker.js"></script>
+        <script type="text/javascript" src="components/moment/min/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="components/angular-pageslide-directive/dist/angular-pageslide-directive.js"></script>
+        <script type="text/javascript" src="components/ng-dialog/js/ngDialog.js"></script>
+        <script type="text/javascript" src="components/ng-dialog/js/ngDialog.js"></script>
+        <script type="text/javascript" src="components/angular-multiple-select/build/multiple-select.min.js"></script>
+        <script type="text/javascript" src="components/acute-select/acute/acute.select/acute.select.js"></script>
+        <script type="text/javascript" src="components/angular-ui-select/dist/select.js"></script>
+        <script type="text/javascript" src="components/angular-sanitize/angular-sanitize.js"></script>
+        <script type="text/javascript" src="components/angular-confirm-modal/angular-confirm.js"></script>
+        <script type="text/javascript" src="components/d3/d3.js"></script>
+        <script type="text/javascript" src="components/angularjs-slider/dist/rzslider.min.js"></script>
+        <!-- endbuild -->
+        <!-- Custom Scripts -->
+        <script type="text/javascript" src="js/dashboard.min.js"></script>
+    </head>
+    <body ng-controller="MasterCtrl">
+
+        <div ng-if="$userService.getStage() == 0">
+            <log-in-page></log-in-page>
+        </div>
+        <div ng-if="$userService.getStage() == 3">
+            <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar">
+                        <li class="sidebar-main">
+                            <a ng-click="toggleSidebar()">
+                                FIIPLS 1.0
+                                <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">
+                            <span>NAVIGATION</span>
+                        </li>
+                        <li class="sidebar-list">
+                            <a href="#/learning">Learning</a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a href="#/predict">Predict</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a href="#/doc">Documentation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Sidebar -->
+
+                <div id="content-wrapper">
+                    <div class="page-content">
+
+                        <!-- Main Content -->
+                        <div class="row alerts-container" data-ng-show="$alertService.getAlerts().length">
+                          <div class="col-xs-12">
+                            <uib-alert data-ng-repeat="alert in $alertService.getAlerts()" type="{{alert.type}}" close="$alertService.closeAlert($index)">{{alert.msg}}</uib-alert>
+                          </div>
+                        </div>
+                        <div ui-view></div>
+
+                    </div>
+                    <!-- End Page Content -->
+                </div>
+                <!-- End Content Wrapper -->
+            </div>
+            <!-- End Page Wrapper -->
+        </div>
+    </body>
+</html>

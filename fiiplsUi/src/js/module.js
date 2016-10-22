@@ -1,0 +1,1 @@
+var app = angular.module('RDash', ['ui.bootstrap','n3-line-chart','rzModule', 'ui.router', 'ngCookies','jkuri.datepicker','pageslide-directive','ngDialog','multipleSelect','ui.select', 'ngSanitize','angular-confirm']);

@@ -1,0 +1,110 @@
+<div class="panel-heading"><h3>Add new problem</h3></div>
+<form novalidate>
+<div class="row">
+    <div class="col-lg-4">
+        <h4>
+            <label for="socialRoleCat" class="">Social Role Category</label>
+        </h4>
+        <div >
+            <select class="form-control" id="socialRoleCat"   ng-change="loadValues(selectedFact.socialRoleDescription);"
+              ng-model="selectedFact.socialRoleDescription">
+                <option ng-repeat="roles in $metaInfoService.getMetaInfo().socialRole">{{roles.category}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <h4>
+            <label for="socialRole" class="">Social Role</label>
+        </h4>
+        <div >
+            <select class="form-control" id="socialRole" ng-model="selectedFact.problemType">
+                <option ng-repeat="items in selectedRole.items">{{items.item}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <h4>
+            <label for="problem" class="">Problem</label>
+        </h4>
+        <select class="form-control" id="problem" ng-model="selectedFact.socialRoleProblemType">
+            <option ng-repeat="items in $metaInfoService.getMetaInfo().socialRoleProblemType">{{items.problemType}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3">
+        <h4>
+            <label for="severity" class="">Severity</label>
+        </h4>
+        <select class="form-control" id="severity" ng-model="selectedFact.serverity">
+              <option ng-repeat="items in $metaInfoService.getMetaInfo().severity">{{items.category}}</option>
+        </select>
+    </div>
+    <div class="col-lg-3">
+        <h4>
+            <label for="duration" class="">Duration</label>
+        </h4>
+        <select class="form-control" id="duration" ng-model="selectedFact.duration">
+              <option ng-repeat="items in $metaInfoService.getMetaInfo().duration">{{items.category}}</option>
+        </select>
+    </div>
+    <div class="col-lg-3">
+        <h4>
+            <label for="coping" class="">Coping Ability</label>
+        </h4>
+        <select class="form-control" id="coping" ng-model="selectedFact.copingAbitity">
+            <option ng-repeat="items in $metaInfoService.getMetaInfo().copingAbility">{{items.category}}</option>
+        </select>
+    </div>
+    <div class="col-lg-3">
+        <h4>
+            <label for="priority" class="">Priority</label>
+        </h4>
+        <select class="form-control" id="priority" ng-model="selectedFact.priority">
+            <option ng-repeat="items in $metaInfoService.getMetaInfo().priority">{{items.category}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4>
+            <label for="goal" class="">Goal</label>
+        </h4>
+        <div >
+            <textarea rows="4" type="text" class="form-control" id="goal" ng-model="selectedFact.goal"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h4>
+            <label for="recom" class="">Recommended Intervention</label>
+        </h4>
+        <div >
+            <textarea rows="4" type="text" class="form-control" id="recom" ng-model="selectedFact.recommendedInter"></textarea>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <h4>
+            <label for="expOut" class="">Expected Outcome</label>
+        </h4>
+        <div >
+            <textarea rows="4" type="text" class="form-control" id="expOut" ng-model="selectedFact.expectedOutcome"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-6" ng-if="functionval != 'edit'">
+    <button class="btn btn-primary pull-right" ng-click="AddNow();">Add</button>
+  </div>
+  <div class="col-md-6" ng-if="functionval == 'edit'">
+    <button class="btn btn-primary pull-right" ng-click="updateNow();">Update</button>
+  </div>
+  <div class="col-md-6">
+      <button class="btn btn-primary pull-left" ng-click="cancel();">Cancel</button>
+    </div>
+</div>
+</form>
