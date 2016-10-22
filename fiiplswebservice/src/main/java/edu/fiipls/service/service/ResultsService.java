@@ -59,10 +59,17 @@ public class ResultsService {
 		ch.setId("0");
 		ch.setNoOfRows(0);
 		output.getLearningProgress().add(ch);
-
+		double bestConsis = 0;
 		for (LearningResults result : db.get(jobName)) {
 			ResultsForChart chart = new ResultsForChart();
-			chart.setBestConsistency(output.getBestClassifier().getBestConsistency());
+			double consist = (result.getConsistent() / totalRows) * 100;
+			if(bestConsis < consist){
+				chart.setBestConsistency(consist);
+				bestConsis = consist;
+			}else{
+				chart.setBestConsistency(bestConsis);
+			}
+			
 			chart.setClassifier1Accuracy((result.getClassifier1Correct() / totalRows) * 100);
 			chart.setClassifier2Accuracy((result.getClassifier2Correct() / totalRows) * 100);
 			chart.setConsistency((result.getConsistent() / totalRows) * 100);

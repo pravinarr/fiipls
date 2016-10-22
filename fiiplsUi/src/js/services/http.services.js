@@ -1,7 +1,7 @@
 angular
     .module('RDash').service('httpService',['$http','userService','$q', function($http, userService,$q) {
 
-    var url = "http://2692b0de.ngrok.io";
+    var url = "http://3991359b.ngrok.io";
     this.getdataforCharts = function() {
 
         var promise = $http({
