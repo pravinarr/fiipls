@@ -4,8 +4,6 @@ public class LearningResultModel {
 	
 	private String jobId;
 
-	private String totalRows;
-
 	private String classifier1Correct;
 
 	private String classifier2Correct;
@@ -20,14 +18,6 @@ public class LearningResultModel {
 
 	public void setJobId(String jobId) {
 		this.jobId = jobId;
-	}
-
-	public String getTotalRows() {
-		return totalRows;
-	}
-
-	public void setTotalRows(String totalRows) {
-		this.totalRows = totalRows;
 	}
 
 	public String getClassifier1Correct() {

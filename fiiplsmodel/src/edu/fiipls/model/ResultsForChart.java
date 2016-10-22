@@ -12,6 +12,8 @@ public class ResultsForChart {
 	
 	private double bestConsistency;
 	
+	private double noOfRows;
+	
 	public String getId() {
 		return id;
 	}
@@ -50,6 +52,14 @@ public class ResultsForChart {
 
 	public void setBestConsistency(double bestConsistency) {
 		this.bestConsistency = bestConsistency;
+	}
+
+	public double getNoOfRows() {
+		return noOfRows;
+	}
+
+	public void setNoOfRows(double noOfRows) {
+		this.noOfRows = noOfRows;
 	}
 
 }

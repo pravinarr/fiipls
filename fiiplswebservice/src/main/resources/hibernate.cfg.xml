@@ -15,5 +15,6 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
          
         <mapping class="edu.fiipls.entities.LearningResults"/>
+        <mapping class="edu.fiipls.entities.JobEntity"/>
     </session-factory>
 </hibernate-configuration>

@@ -21,5 +21,22 @@ public class LearningResultsDB extends BaseDBTransaction {
 		close();
 		return results;
 	}
+	
+	public List<LearningResults> get(String jobId) {
+		start();
+		@SuppressWarnings("unchecked")
+		List<LearningResults> results = getSession().createQuery("from LearningResults where jobId=\""+jobId+"\"").list();
+		close();
+		return results;
+	}
+	
+	public List<LearningResults> getBeat(String jobId) {
+		start();
+		@SuppressWarnings("unchecked")
+		List<LearningResults> results = getSession().createQuery("from LearningResults where jobId=\""+jobId+"\""
+				+ " and consistent = (select max(consistent) from  LearningResults)").list();
+		close();
+		return results;
+	}
 
 }

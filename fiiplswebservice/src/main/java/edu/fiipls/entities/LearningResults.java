@@ -14,15 +14,13 @@ public class LearningResults {
 
 	private String jobId;
 
-	private String totalRows;
+	private double classifier1Correct;
 
-	private String classifier1Correct;
+	private double classifier2Correct;
 
-	private String classifier2Correct;
+	private double consistent;
 
-	private String consistent;
-
-	private String nonConsistent;
+	private double nonConsistent;
 	
 	private String columns;
 	
@@ -30,11 +28,10 @@ public class LearningResults {
 
 	}
 
-	public LearningResults(int id, String jobId, String totalRows, String classifier1Correct,
-			String classifier2Correct, String consistent, String nonConsistent,String columns) {
+	public LearningResults(int id, String jobId, double totalRows, double classifier1Correct,
+			double classifier2Correct, double consistent, double nonConsistent,String columns) {
 		this.id = id;
 		this.jobId = jobId;
-		this.totalRows = totalRows;
 		this.classifier1Correct = classifier1Correct;
 		this.classifier2Correct = classifier2Correct;
 		this.consistent = consistent;
@@ -58,43 +55,35 @@ public class LearningResults {
 		this.jobId = jobId;
 	}
 
-	public String getTotalRows() {
-		return totalRows;
-	}
-
-	public void setTotalRows(String totalRows) {
-		this.totalRows = totalRows;
-	}
-
-	public String getClassifier1Correct() {
+	public double getClassifier1Correct() {
 		return classifier1Correct;
 	}
 
-	public void setClassifier1Correct(String classifier1Correct) {
+	public void setClassifier1Correct(double classifier1Correct) {
 		this.classifier1Correct = classifier1Correct;
 	}
 
-	public String getClassifier2Correct() {
+	public double getClassifier2Correct() {
 		return classifier2Correct;
 	}
 
-	public void setClassifier2Correct(String classifier2Correct) {
+	public void setClassifier2Correct(double classifier2Correct) {
 		this.classifier2Correct = classifier2Correct;
 	}
 
-	public String getConsistent() {
+	public double getConsistent() {
 		return consistent;
 	}
 
-	public void setConsistent(String consistent) {
+	public void setConsistent(double consistent) {
 		this.consistent = consistent;
 	}
 
-	public String getNonConsistent() {
+	public double getNonConsistent() {
 		return nonConsistent;
 	}
 
-	public void setNonConsistent(String nonConsistent) {
+	public void setNonConsistent(double nonConsistent) {
 		this.nonConsistent = nonConsistent;
 	}
 
