@@ -10,6 +10,7 @@ public class JobMapper {
 		result.setClassifier1Model(model.getClassifier1Model());
 		result.setClassifier2Model(model.getClassifier2Model());
 		result.setJobId(model.getJobId());
+		result.setTotalRows(Double.parseDouble(model.getTotalRows()));
 		return result;
 	}
 
@@ -19,6 +20,7 @@ public class JobMapper {
 		result.setClassifier1Model(model.getClassifier1Model());
 		result.setClassifier2Model(model.getClassifier2Model());
 		result.setJobId(model.getJobId());
+		result.setTotalRows(""+(model.getTotalRows()));
 		return result;
 	}
 }

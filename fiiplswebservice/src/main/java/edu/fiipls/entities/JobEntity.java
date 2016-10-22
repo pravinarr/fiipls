@@ -19,6 +19,8 @@ public class JobEntity {
 	private String classifier1Model;
 
 	private String classifier2Model;
+	
+	private double totalRows;
 
 	public String getClassifier1Model() {
 		return classifier1Model;
@@ -59,6 +61,14 @@ public class JobEntity {
 
 	public void setColumns(String columns) {
 		this.columns = columns;
+	}
+
+	public double getTotalRows() {
+		return totalRows;
+	}
+
+	public void setTotalRows(double totalRows) {
+		this.totalRows = totalRows;
 	}
 
 }

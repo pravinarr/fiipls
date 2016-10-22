@@ -35,7 +35,7 @@ public class ResultsService {
 		double totalRows = 0;
 		if (results.size() > 0) {
 			output.setJobDetails(map.resultMapDBToService(results.get(0)));
-			totalRows = results.get(0).getColumns().split(",").length;
+			totalRows = results.get(0).getTotalRows();
 			output.setJobId(jobName);
 		}
 
@@ -49,6 +49,16 @@ public class ResultsService {
 			chart.setNoOfRows(result.getColumns().split(",").length);
 			output.setBestClassifier(chart);
 		}
+		
+		
+		ResultsForChart ch = new ResultsForChart();
+		ch.setBestConsistency(0);
+		ch.setClassifier1Accuracy(0);
+		ch.setClassifier2Accuracy(0);
+		ch.setConsistency(0);
+		ch.setId("0");
+		ch.setNoOfRows(0);
+		output.getLearningProgress().add(ch);
 
 		for (LearningResults result : db.get(jobName)) {
 			ResultsForChart chart = new ResultsForChart();

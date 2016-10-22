@@ -12,6 +12,7 @@ public class ResultMapper {
 		result.setConsistent(Double.parseDouble(model.getConsistent()));
 		result.setJobId(model.getJobId());
 		result.setNonConsistent(Double.parseDouble(model.getNonConsistent()));
+		result.setColumns(model.getColumns());
 		return result;
 	}
 
@@ -22,6 +23,7 @@ public class ResultMapper {
 		result.setConsistent(""+model.getConsistent());
 		result.setJobId(model.getJobId());
 		result.setNonConsistent(""+model.getNonConsistent());
+		result.setColumns(model.getColumns());
 		return result;
 	}
 

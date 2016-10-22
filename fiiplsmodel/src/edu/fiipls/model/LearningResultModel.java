@@ -11,6 +11,8 @@ public class LearningResultModel {
 	private String consistent;
 
 	private String nonConsistent;
+	
+	private String columns;
 
 	public String getJobId() {
 		return jobId;
@@ -50,6 +52,14 @@ public class LearningResultModel {
 
 	public void setNonConsistent(String nonConsistent) {
 		this.nonConsistent = nonConsistent;
+	}
+
+	public String getColumns() {
+		return columns;
+	}
+
+	public void setColumns(String columns) {
+		this.columns = columns;
 	}
 	
 	

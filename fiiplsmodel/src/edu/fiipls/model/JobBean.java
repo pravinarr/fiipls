@@ -9,6 +9,8 @@ public class JobBean {
 	private String classifier1Model;
 	
 	private String classifier2Model;
+	
+	private String totalRows;
 
 	public String getJobId() {
 		return jobId;
@@ -40,6 +42,14 @@ public class JobBean {
 
 	public void setClassifier2Model(String classifier2Model) {
 		this.classifier2Model = classifier2Model;
+	}
+
+	public String getTotalRows() {
+		return totalRows;
+	}
+
+	public void setTotalRows(String totalRows) {
+		this.totalRows = totalRows;
 	}
 
 	
