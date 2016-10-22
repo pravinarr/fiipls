@@ -24,12 +24,14 @@ public class LearningResults {
 
 	private String nonConsistent;
 	
+	private String columns;
+	
 	public LearningResults() {
 
 	}
 
 	public LearningResults(int id, String jobId, String totalRows, String classifier1Correct,
-			String classifier2Correct, String consistent, String nonConsistent) {
+			String classifier2Correct, String consistent, String nonConsistent,String columns) {
 		this.id = id;
 		this.jobId = jobId;
 		this.totalRows = totalRows;
@@ -37,6 +39,7 @@ public class LearningResults {
 		this.classifier2Correct = classifier2Correct;
 		this.consistent = consistent;
 		this.nonConsistent = nonConsistent;
+		this.columns = columns;
 	}
 
 	public int getId() {
@@ -93,6 +96,14 @@ public class LearningResults {
 
 	public void setNonConsistent(String nonConsistent) {
 		this.nonConsistent = nonConsistent;
+	}
+
+	public String getColumns() {
+		return columns;
+	}
+
+	public void setColumns(String columns) {
+		this.columns = columns;
 	}
 
 }
