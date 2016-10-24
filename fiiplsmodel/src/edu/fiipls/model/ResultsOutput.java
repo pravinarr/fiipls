@@ -6,13 +6,16 @@ import java.util.List;
 public class ResultsOutput {
 
 	private String jobId;
-	
+
 	private ResultsForChart bestClassifier;
-	
+
 	private List<ResultsForChart> learningProgress = new ArrayList<ResultsForChart>();
 
-	private JobBean jobDetails ;
+	private JobBean jobDetails;
 
+	public ResultsOutput() {
+
+	}
 
 	public ResultsForChart getBestClassifier() {
 		return bestClassifier;
@@ -45,7 +48,5 @@ public class ResultsOutput {
 	public void setJobDetails(JobBean jobDetails) {
 		this.jobDetails = jobDetails;
 	}
-	
-	
-	
+
 }
