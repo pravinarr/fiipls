@@ -28,9 +28,10 @@ public class FIleSaver extends Configured implements Tool {
 		conf.set("yarn.resourcemanager.address", bean.getHdfsPath());
 		conf.set("mapreduce.framework.name", "yarn");
 
-		conf.set("fs.default.name", "hdfs://" + bean.getHdfsPath());
+		conf.set("fs.default.name", "hdfs://" + bean.getHdfsPath()+":"+bean.getHdfsPort());
 		FileSystem fs = FileSystem.get(conf);
 		if (fs.exists(outputPath)) {
+			fs.delete(outputPath);
 			System.err.println("output path exists");
 			return 1;
 		}

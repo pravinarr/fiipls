@@ -12,16 +12,17 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import hadoop.edu.fiipls.core.learner.beans.DataSetBean;
 import hadoop.edu.fiipls.core.learner.beans.ResultBean;
 import hadoop.edu.fiipls.core.learner.beans.ScoreBean;
 
 public class ScoreModel extends Configured implements Tool {
 
-	ResultBean bean;
+	public ResultBean bean;
 	
-	ScoreBean jobBean;
+	DataSetBean jobBean;
 
-	public ResultBean execute(ScoreBean input) throws Exception {
+	public ResultBean execute(DataSetBean input) throws Exception {
 		String[] args1 = {""};
 		jobBean = input;
 		int res = ToolRunner.run(new Configuration(), new ScoreModel(), args1);
@@ -30,14 +31,6 @@ public class ScoreModel extends Configured implements Tool {
 
 	public int run(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-		
-		/*
-		 * conf.setHDFSHost("HadoopMaster"); conf.setHDFSPort("9000");
-		 * conf.setJobTrackerHost("HadoopMaster");
-		 * conf.setJobTrackerPort("8050");
-		 * conf.setInputPaths("/input/dataset.csv");
-		 * conf.setOutputPath("/output/");
-		 */
 		conf.set("valueSplitter", jobBean.getInputSplit());
 		conf.set("classifier1Path", jobBean.getClassifier1Path());
 		conf.set("classifier2Path", jobBean.getClassifier2Path());

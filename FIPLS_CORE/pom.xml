@@ -56,5 +56,10 @@
 			<artifactId>hadoop-mapreduce-client-common</artifactId>
 			<version>2.7.2</version>
 		</dependency>
+		<dependency>
+			<groupId>fiiplsrestclient</groupId>
+			<artifactId>fiiplsrestclient</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,22 +1,45 @@
 package hadoop.edu.fiipls.core.learner.beans;
 
 public class BaseJobBean {
-	
+
 	String hdfsPath;
-	
+
+	String hdfsPort;
+
 	String yarnPath;
-	
+
+	String yarnPort;
+
 	String inputPath;
-	
+
 	String outputPath;
-	
+
 	String inputSplit;
-	
+
 	String headerFile;
-	
+
 	String attributeToFind;
+
+	String classifier1Config;
+
+	String classifier2Config;
+
+	String testpath;
+
+	String columnInfo;
+
+	double noOfRows;
 	
-	public BaseJobBean(BaseJobBean bean){
+	ResultBean bestResults;
+	
+	double allowedInconsistency;
+
+
+	public BaseJobBean() {
+
+	}
+
+	public BaseJobBean(BaseJobBean bean) {
 		this.hdfsPath = bean.getHdfsPath();
 		this.yarnPath = bean.getYarnPath();
 		this.inputPath = bean.getInputPath();
@@ -26,7 +49,78 @@ public class BaseJobBean {
 		this.attributeToFind = bean.getAttributeToFind();
 	}
 	
-	
+	public double getAllowedInconsistency() {
+		return allowedInconsistency;
+	}
+
+	public void setAllowedInconsistency(double allowedInconsistency) {
+		this.allowedInconsistency = allowedInconsistency;
+	}
+
+	public ResultBean getBestResults() {
+		return bestResults;
+	}
+
+	public void setBestResults(ResultBean bestResults) {
+		this.bestResults = bestResults;
+	}
+
+	public double getNoOfRows() {
+		return noOfRows;
+	}
+
+	public void setNoOfRows(double noOfRows) {
+		this.noOfRows = noOfRows;
+	}
+
+	public String getColumnInfo() {
+		return columnInfo;
+	}
+
+	public void setColumnInfo(String columnInfo) {
+		this.columnInfo = columnInfo;
+	}
+
+	public String getTestpath() {
+		return testpath;
+	}
+
+	public void setTestpath(String testpath) {
+		this.testpath = testpath;
+	}
+
+	public String getClassifier1Config() {
+		return classifier1Config;
+	}
+
+	public void setClassifier1Config(String classifier1Config) {
+		this.classifier1Config = classifier1Config;
+	}
+
+	public String getClassifier2Config() {
+		return classifier2Config;
+	}
+
+	public void setClassifier2Config(String classifier2Config) {
+		this.classifier2Config = classifier2Config;
+	}
+
+	public String getHdfsPort() {
+		return hdfsPort;
+	}
+
+	public void setHdfsPort(String hdfsPort) {
+		this.hdfsPort = hdfsPort;
+	}
+
+	public String getYarnPort() {
+		return yarnPort;
+	}
+
+	public void setYarnPort(String yarnPort) {
+		this.yarnPort = yarnPort;
+	}
+
 	public String getAttributeToFind() {
 		return attributeToFind;
 	}
@@ -82,6 +176,5 @@ public class BaseJobBean {
 	public void setOutputPath(String outputPath) {
 		this.outputPath = outputPath;
 	}
-	
 
 }

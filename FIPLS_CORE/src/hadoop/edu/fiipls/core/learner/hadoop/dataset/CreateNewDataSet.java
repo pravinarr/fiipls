@@ -28,13 +28,6 @@ public class CreateNewDataSet extends Configured implements Tool {
 		
 		
 		Configuration conf = new Configuration();
-		/*
-		 * conf.setHDFSHost("HadoopMaster"); conf.setHDFSPort("9000");
-		 * conf.setJobTrackerHost("HadoopMaster");
-		 * conf.setJobTrackerPort("8050");
-		 * conf.setInputPaths("/input/dataset.csv");
-		 * conf.setOutputPath("/output/");
-		 */
 		conf.set("fieldSeperator", bean.getInputSplit());
 		conf.set("nextCombination", bean.getNextCombination());
 		Job job = Job.getInstance(conf);
