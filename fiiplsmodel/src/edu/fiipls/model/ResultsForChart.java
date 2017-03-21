@@ -14,6 +14,8 @@ public class ResultsForChart {
 	
 	private double noOfRows;
 	
+	private double allowedInconsistency;
+	
 	public String getId() {
 		return id;
 	}
@@ -60,6 +62,14 @@ public class ResultsForChart {
 
 	public void setNoOfRows(double noOfRows) {
 		this.noOfRows = noOfRows;
+	}
+
+	public double getAllowedInconsistency() {
+		return allowedInconsistency;
+	}
+
+	public void setAllowedInconsistency(double allowedInconsistency) {
+		this.allowedInconsistency = allowedInconsistency;
 	}
 
 }

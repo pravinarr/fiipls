@@ -21,6 +21,8 @@ public class JobEntity {
 	private String classifier2Model;
 	
 	private double totalRows;
+	
+	private String allowedInconsistency;
 
 	public String getClassifier1Model() {
 		return classifier1Model;
@@ -69,6 +71,14 @@ public class JobEntity {
 
 	public void setTotalRows(double totalRows) {
 		this.totalRows = totalRows;
+	}
+
+	public String getAllowedInconsistency() {
+		return allowedInconsistency;
+	}
+
+	public void setAllowedInconsistency(String allowedInconsistency) {
+		this.allowedInconsistency = allowedInconsistency;
 	}
 
 }
