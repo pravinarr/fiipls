@@ -20,8 +20,11 @@ public class CreateNewDataSet extends Configured implements Tool {
 	public void execute(DataSetBean bean) throws Exception {
 		this.bean = bean;
 		String[] args1 = { "" };
-		int res = ToolRunner.run(new Configuration(), new CreateNewDataSet(), args1);
-		System.exit(res);
+		int res = ToolRunner.run(new Configuration(), new CreateNewDataSet(bean), args1);
+	}
+	
+	public CreateNewDataSet(DataSetBean b){
+		this.bean = b;
 	}
 
 	public int run(String[] args) throws Exception {
@@ -47,8 +50,8 @@ public class CreateNewDataSet extends Configured implements Tool {
 
 		conf.set("fs.default.name", "hdfs://" + bean.getHdfsPath());
 
-		FileInputFormat.setInputPaths(job, new Path(bean.getInputPath()));
-		FileOutputFormat.setOutputPath(job, new Path(bean.getOutputPath()));
+		FileInputFormat.setInputPaths(job, new Path("hdfs://" + bean.getHdfsPath()+":"+bean.getHdfsPort()+""+bean.getInputPath()));
+		FileOutputFormat.setOutputPath(job, new Path("hdfs://" + bean.getHdfsPath()+":"+bean.getHdfsPort()+""+bean.getOutputPath()));
 
 //		FileInputFormat.setInputPaths(job, new Path("hdfs://HadoopMaster:9000/input/actual/dataset.csv"));
 	//	FileOutputFormat.setOutputPath(job, new Path("hdfs://HadoopMaster:9000/output_ext4/dataset"));
@@ -59,9 +62,11 @@ public class CreateNewDataSet extends Configured implements Tool {
 		job.setJarByClass(CreateNewDataSet.class);
 		System.out.println("job started");
 		long start = System.currentTimeMillis();
+		
 		boolean flag = job.waitForCompletion(true);
+		job.monitorAndPrintJob();
 		System.out.println("job completed" + flag);
-		System.out.println("Time taken :" +((System.currentTimeMillis()-start)/1000)+" ms");
+		System.out.println("Time taken :" +((System.currentTimeMillis()-start)/1000)+" seconds");
 		return (flag?0:1);
 	}
 }

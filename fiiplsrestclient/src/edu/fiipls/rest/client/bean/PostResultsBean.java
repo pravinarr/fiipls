@@ -12,6 +12,11 @@ public class PostResultsBean {
 	private JobBean job;
 	
 	private LearningResultModel result;
+	
+	public PostResultsBean(){
+		this.setPath("save");
+		this.setUrl("http://192.168.1.14:8080/fiiplswebservice/rest/results/");
+	}
 
 	public String getUrl() {
 		return url;
