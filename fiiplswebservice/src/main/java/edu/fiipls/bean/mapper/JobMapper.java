@@ -11,6 +11,7 @@ public class JobMapper {
 		result.setClassifier2Model(model.getClassifier2Model());
 		result.setJobId(model.getJobId());
 		result.setTotalRows(Double.parseDouble(model.getTotalRows()));
+		result.setAllowedInconsistency(model.getAllowedInconsistency());
 		return result;
 	}
 
@@ -21,6 +22,7 @@ public class JobMapper {
 		result.setClassifier2Model(model.getClassifier2Model());
 		result.setJobId(model.getJobId());
 		result.setTotalRows(""+(model.getTotalRows()));
+		result.setAllowedInconsistency(model.getAllowedInconsistency());
 		return result;
 	}
 }

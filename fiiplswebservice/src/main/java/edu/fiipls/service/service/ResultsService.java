@@ -41,10 +41,10 @@ public class ResultsService {
 
 		for (LearningResults result : db.getBeat(jobName)) {
 			ResultsForChart chart = new ResultsForChart();
-			chart.setBestConsistency((result.getConsistent() / totalRows) * 100);
+			chart.setBestInConsistency((result.getConsistent() / totalRows) * 100);
 			chart.setClassifier1Accuracy((result.getClassifier1Correct() / totalRows) * 100);
 			chart.setClassifier2Accuracy((result.getClassifier2Correct() / totalRows) * 100);
-			chart.setConsistency((result.getConsistent() / totalRows) * 100);
+			chart.setInconsistency((result.getConsistent() / totalRows) * 100);
 			chart.setId("" + result.getId());
 			chart.setNoOfRows(result.getColumns().split(",").length);
 			output.setBestClassifier(chart);
@@ -52,29 +52,31 @@ public class ResultsService {
 		
 		
 		ResultsForChart ch = new ResultsForChart();
-		ch.setBestConsistency(0);
+		ch.setBestInConsistency(0);
 		ch.setClassifier1Accuracy(0);
 		ch.setClassifier2Accuracy(0);
-		ch.setConsistency(0);
+		ch.setInconsistency(0);
 		ch.setId("0");
 		ch.setNoOfRows(0);
+		ch.setAllowedInconsistency(Double.parseDouble(output.getJobDetails().getAllowedInconsistency()));
 		output.getLearningProgress().add(ch);
-		double bestConsis = 0;
+		double bestConsis = Double.MAX_VALUE;
 		for (LearningResults result : db.get(jobName)) {
 			ResultsForChart chart = new ResultsForChart();
-			double consist = (result.getConsistent() / totalRows) * 100;
-			if(bestConsis < consist){
-				chart.setBestConsistency(consist);
+			double consist = (result.getNonConsistent() / totalRows) * 100;
+			if(bestConsis > consist){
+				chart.setBestInConsistency(consist);
 				bestConsis = consist;
 			}else{
-				chart.setBestConsistency(bestConsis);
+				chart.setBestInConsistency(bestConsis);
 			}
 			
 			chart.setClassifier1Accuracy((result.getClassifier1Correct() / totalRows) * 100);
 			chart.setClassifier2Accuracy((result.getClassifier2Correct() / totalRows) * 100);
-			chart.setConsistency((result.getConsistent() / totalRows) * 100);
+			chart.setInconsistency((result.getNonConsistent() / totalRows) * 100);
 			chart.setId("" + result.getId());
 			chart.setNoOfRows(result.getColumns().split(",").length);
+			chart.setAllowedInconsistency(Double.parseDouble(output.getJobDetails().getAllowedInconsistency()));
 			output.getLearningProgress().add(chart);
 
 		}

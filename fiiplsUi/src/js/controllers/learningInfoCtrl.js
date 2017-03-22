@@ -75,9 +75,11 @@ app.controller('learningCtrl', ['$scope', 'metaInfoService', 'httpService', 'use
             "bestConsistency": 0,
             "classifier1Accuracy": 0,
             "classifier2Accuracy": 0,
-            "consistency": 0,
+            "inconsistency": 0,
+            "bestInConsistency":0,
             "id": "0",
-            "noOfRows": 0
+            "noOfRows": 0,
+            "allowedInconsistency":0
         }]
     };
 
@@ -111,11 +113,19 @@ app.controller('learningCtrl', ['$scope', 'metaInfoService', 'httpService', 'use
         }, {
             axis: "y",
             dataset: "dataset0",
-            key: "consistency",
-            label: "Consistency of current learning (%):",
+            key: "inconsistency",
+            label: "In-Consistency of current learning (%):",
             color: "#1F618D",
             type: ['line', 'dot'],
             id: 'mySeries3'
+        }, {
+            axis: "y",
+            dataset: "dataset0",
+            key: "bestInConsistency",
+            label: "Current best Consistency of current learning (%):",
+            color: "#00cc00",
+            type: ['line', 'dot'],
+            id: 'mySeries4'
         }, {
             axis: "y",
             dataset: "dataset0",
@@ -123,12 +133,27 @@ app.controller('learningCtrl', ['$scope', 'metaInfoService', 'httpService', 'use
             label: "No of columns considered",
             color: "#17202A",
             type: ['line', 'dot'],
-            id: 'mySeries4'
+            id: 'mySeries5'
+        },
+        {
+            axis: "y",
+            dataset: "dataset0",
+            key: "allowedInconsistency",
+            label: "Allowed Inconsistency Percentage",
+            color: "#ff4d94",
+            type: ['line', 'dot'],
+            id: 'mySeries6'
         }],
+
+        hideOverflow: true,
+
         axes: {
             x: {
-                key: "id"
-            }
+                key: "id",
+                 min: 0, max: 300,
+                zoomable: true
+            },
+             y: {type: 'linear'}
         }
 
     };

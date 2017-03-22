@@ -1,7 +1,7 @@
 angular
     .module('RDash').service('httpService',['$http','userService','$q', function($http, userService,$q) {
 
-    var url = "http://192.168.1.14:8080";
+    var url = "http://localhost:8080";
     this.getdataforCharts = function() {
 
         var promise = $http({

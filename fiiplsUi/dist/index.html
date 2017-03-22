@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" ng-app="RDash">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>FIIPLS</title>
+        <!-- STYLES -->
+        <link rel="stylesheet" href="lib/css/main.min.css"/>
+        <!-- SCRIPTS -->
+        <script src="lib/js/main.min.js"></script>
+        <!-- Custom Scripts -->
+        <script type="text/javascript" src="js/dashboard.min.js"></script>
+    </head>
+    <body ng-controller="MasterCtrl">
+
+        <div ng-if="$userService.getStage() == 0">
+            <log-in-page></log-in-page>
+        </div>
+        <div ng-if="$userService.getStage() == 3">
+            <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar">
+                        <li class="sidebar-main">
+                            <a ng-click="toggleSidebar()">
+                                FIIPLS 1.0
+                                <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">
+                            <span>NAVIGATION</span>
+                        </li>
+                        <li class="sidebar-list">
+                            <a href="#/learning">Learning</a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a href="#/predict">Predict</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a href="#/doc">Documentation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Sidebar -->
+
+                <div id="content-wrapper">
+                    <div class="page-content">
+
+                        <!-- Main Content -->
+                        <div class="row alerts-container" data-ng-show="$alertService.getAlerts().length">
+                          <div class="col-xs-12">
+                            <uib-alert data-ng-repeat="alert in $alertService.getAlerts()" type="{{alert.type}}" close="$alertService.closeAlert($index)">{{alert.msg}}</uib-alert>
+                          </div>
+                        </div>
+                        <div ui-view></div>
+
+                    </div>
+                    <!-- End Page Content -->
+                </div>
+                <!-- End Content Wrapper -->
+            </div>
+            <!-- End Page Wrapper -->
+        </div>
+    </body>
+</html>
