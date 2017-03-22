@@ -74,7 +74,7 @@ public class BuildModel {
 		System.out.println("End of the job");
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		BuildModel bm = new BuildModel();
 		try {
 			bm.generateNewKnowledgeAndEvaluate(); 
@@ -83,7 +83,7 @@ public class BuildModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			/*try {
+			try {
 			String opts = "-hdfs-host HadoopMaster -hdfs-port 9000 -jobtracker-host HadoopMaster -jobtracker-port " +
 					"8050 -input-paths /home/hduser/Desktop/test.csv -output-path /home/hduser/Desktop/Scheduler_ARFF -A petallength,petalwidth,sepallength,sepalwidth,class";
 
@@ -92,7 +92,7 @@ public class BuildModel {
 			arffjob.runJob();
 			} catch (Exception ex) {
 			ex.printStackTrace();
-			}*/
+			}
 	}
-
+*/
 }

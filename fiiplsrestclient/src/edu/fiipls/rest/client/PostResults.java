@@ -1,24 +1,28 @@
 package edu.fiipls.rest.client;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.json.JSONConfiguration;
 
-import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.filter.LoggingFilter;
-
+import edu.fiipls.model.JobBean;
 import edu.fiipls.model.LearningResultModel;
 import edu.fiipls.rest.client.bean.PostResultsBean;
 
 public class PostResults {
-	
-	public static  void main(String[] args){
-		
-		//WebTarget webTarget = client.target("http://3991359b.ngrok.io/fiiplswebservice/rest//").path("first");
+
+	private String jobPath = "http://192.168.1.14:8080/fiiplswebservice/rest/jobs/";
+
+	private String resultPath = "http://192.168.1.14:8080/fiiplswebservice/rest/results/";
+
+	private String path = "save";
+
+	public static void main(String[] args) {
+
+		// WebTarget webTarget =
+		// client.target("http://3991359b.ngrok.io/fiiplswebservice/rest//").path("first");
 		PostResultsBean bean = new PostResultsBean();
 		LearningResultModel mo = new LearningResultModel();
 		mo.setJobId("first");
@@ -29,29 +33,34 @@ public class PostResults {
 		mo.setConsistent("600");
 		bean.setResult(mo);
 		bean.setPath("save");
-		bean.setUrl("http://3991359b.ngrok.io/fiiplswebservice/rest/results/");
+		bean.setUrl("http://192.168.1.14:8080/fiiplswebservice/rest/results/");
+		JobBean jbean = new JobBean();
+		jbean.setClassifier1Model("J48");
+		jbean.setClassifier2Model("NaiveBayes");
+		jbean.setJobId("first");
+		jbean.setTotalRows("10000");
+		bean.setJob(jbean);
 		PostResults r = new PostResults();
-		System.out.println(r.postNewResult(bean));
-		
-		
+		System.out.println(r.postNewJob(bean));
+
 	}
-	
-	public boolean postNewJob(PostResultsBean bean){
-		Client client = ClientBuilder.newClient( new ClientConfig().register( LoggingFilter.class ) );
-		WebTarget webTarget = client.target(bean.getUrl()).path(bean.getPath());
-		 
-		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
-		Response response = (Response) invocationBuilder.post(Entity.entity(bean.getJob(), MediaType.APPLICATION_JSON));
-		return (response.getStatus()==200)?true:false;
+
+	public boolean postNewJob(PostResultsBean bean) {
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResourcePost = client.resource(jobPath + "" + path);
+		ClientResponse response = webResourcePost.type("application/json").post(ClientResponse.class, bean.getJob());
+		return (response.getStatus() == 200) ? true : false;
 	}
-	
-	public boolean postNewResult(PostResultsBean bean){
-		Client client = ClientBuilder.newClient( new ClientConfig().register( LoggingFilter.class ) );
-		WebTarget webTarget = client.target(bean.getUrl()).path(bean.getPath());
-		 
-		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
-		Response response = (Response) invocationBuilder.post(Entity.entity(bean.getResult(), MediaType.APPLICATION_JSON));
-		return (response.getStatus()==200)?true:false;
+
+	public boolean postNewResult(PostResultsBean bean) {
+		ClientConfig clientConfig = new DefaultClientConfig();
+		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		Client client = Client.create(clientConfig);
+		WebResource webResourcePost = client.resource(resultPath + "" + path);
+		ClientResponse response = webResourcePost.type("application/json").post(ClientResponse.class, bean.getResult());
+		return (response.getStatus() == 200) ? true : false;
 	}
 
 }

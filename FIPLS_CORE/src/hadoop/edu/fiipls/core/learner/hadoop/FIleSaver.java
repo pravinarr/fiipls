@@ -14,19 +14,24 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import hadoop.edu.fiipls.core.learner.beans.BaseJobBean;
+import hadoop.edu.fiipls.core.learner.beans.DataSetBean;
 
 public class FIleSaver extends Configured implements Tool {
 
-	BaseJobBean bean;
+	DataSetBean bean;
+	
+	public FIleSaver(DataSetBean b){
+		this.bean = b;
+	}
 	// public static final String FS_PARAM_NAME = "fs.defaultFS";
 
 	public int run(String[] args) throws Exception {
-		String localInputPath = bean.getInputPath();
-		Path outputPath = new Path(bean.getOutputPath());
+		String localInputPath = bean.getLocalInputFile();
+		Path outputPath = new Path(bean.getInputPath());
 
 		Configuration conf = new Configuration();
-		conf.set("yarn.resourcemanager.address", bean.getHdfsPath());
-		conf.set("mapreduce.framework.name", "yarn");
+		//conf.set("yarn.resourcemanager.address", bean.getHdfsPath());
+		//conf.set("mapreduce.framework.name", "yarn");
 
 		conf.set("fs.default.name", "hdfs://" + bean.getHdfsPath()+":"+bean.getHdfsPort());
 		FileSystem fs = FileSystem.get(conf);
@@ -41,11 +46,10 @@ public class FIleSaver extends Configured implements Tool {
 		return 0;
 	}
 
-	public void execute(BaseJobBean bean) throws Exception {
+	public void execute(DataSetBean bean) throws Exception {
 		this.bean = bean;
 		String[] args = {};
-		int returnCode = ToolRunner.run(new FIleSaver(), args);
-		System.exit(returnCode);
+		int returnCode = ToolRunner.run(new FIleSaver(bean), args);
 	}
 
 }

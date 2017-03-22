@@ -9,6 +9,8 @@ public class BaseJobBean {
 	String yarnPath;
 
 	String yarnPort;
+	
+	String localInputFile;
 
 	String inputPath;
 
@@ -30,6 +32,16 @@ public class BaseJobBean {
 
 	double noOfRows;
 	
+	double noOfColumns;
+	
+	public double getNoOfColumns() {
+		return noOfColumns;
+	}
+
+	public void setNoOfColumns(double noOfColumns) {
+		this.noOfColumns = noOfColumns;
+	}
+
 	ResultBean bestResults;
 	
 	double allowedInconsistency;
@@ -49,6 +61,14 @@ public class BaseJobBean {
 		this.attributeToFind = bean.getAttributeToFind();
 	}
 	
+	public String getLocalInputFile() {
+		return localInputFile;
+	}
+
+	public void setLocalInputFile(String localInputFile) {
+		this.localInputFile = localInputFile;
+	}
+
 	public double getAllowedInconsistency() {
 		return allowedInconsistency;
 	}
