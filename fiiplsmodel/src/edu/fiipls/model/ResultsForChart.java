@@ -8,9 +8,9 @@ public class ResultsForChart {
 
 	private double classifier2Accuracy;
 	
-	private double consistency;
+	private double inconsistency;
 	
-	private double bestConsistency;
+	private double bestInConsistency;
 	
 	private double noOfRows;
 	
@@ -40,22 +40,6 @@ public class ResultsForChart {
 		this.classifier2Accuracy = classifier2Accuracy;
 	}
 
-	public double getConsistency() {
-		return consistency;
-	}
-
-	public void setConsistency(double consistency) {
-		this.consistency = consistency;
-	}
-
-	public double getBestConsistency() {
-		return bestConsistency;
-	}
-
-	public void setBestConsistency(double bestConsistency) {
-		this.bestConsistency = bestConsistency;
-	}
-
 	public double getNoOfRows() {
 		return noOfRows;
 	}
@@ -70,6 +54,22 @@ public class ResultsForChart {
 
 	public void setAllowedInconsistency(double allowedInconsistency) {
 		this.allowedInconsistency = allowedInconsistency;
+	}
+
+	public double getInconsistency() {
+		return inconsistency;
+	}
+
+	public void setInconsistency(double inconsistency) {
+		this.inconsistency = inconsistency;
+	}
+
+	public double getBestInConsistency() {
+		return bestInConsistency;
+	}
+
+	public void setBestInConsistency(double bestInConsistency) {
+		this.bestInConsistency = bestInConsistency;
 	}
 
 }

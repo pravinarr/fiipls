@@ -11,6 +11,8 @@ public class JobBean {
 	private String classifier2Model;
 	
 	private String totalRows;
+	
+	private String allowedInconsistency;
 
 	public String getJobId() {
 		return jobId;
@@ -50,6 +52,14 @@ public class JobBean {
 
 	public void setTotalRows(String totalRows) {
 		this.totalRows = totalRows;
+	}
+
+	public String getAllowedInconsistency() {
+		return allowedInconsistency;
+	}
+
+	public void setAllowedInconsistency(String allowedInconsistency) {
+		this.allowedInconsistency = allowedInconsistency;
 	}
 
 	
