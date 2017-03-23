@@ -92,9 +92,9 @@ public class PredictionService {
 	}
 
 	@GET
-	@Path("/{param}")
+	@Path("/newrecords/toadd")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getResultsForRelearning(@PathParam("param") String values) {
+	public Response getResultsForRelearning() {
 		NewRecordsDBImpl db = new NewRecordsDBImpl();
 		List<Newrecords> result = new ArrayList<Newrecords>();
 		for (NewRecords rec : db.get()) {
