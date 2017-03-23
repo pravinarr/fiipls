@@ -19,7 +19,7 @@ import com.sun.jersey.multipart.FormDataParam;
 public class UploadModelsService {
 
 	/** The path to the folder where we want to store the uploaded files */
-	private static final String UPLOAD_FOLDER = "bestmodel/";
+	private static final String UPLOAD_FOLDER = "/home/hduser/classifiers/";
 
 	public UploadModelsService() {
 	}

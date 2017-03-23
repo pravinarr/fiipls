@@ -16,5 +16,6 @@
          
         <mapping class="edu.fiipls.entities.LearningResults"/>
         <mapping class="edu.fiipls.entities.JobEntity"/>
+        <mapping class="edu.fiipls.entities.NewRecords"/>
     </session-factory>
 </hibernate-configuration>

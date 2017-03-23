@@ -1,19 +1,16 @@
 package edu.fiipls.rest.client;
 import java.io.File;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
-
-import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.MultiPart;
 import com.sun.jersey.multipart.file.FileDataBodyPart;
+import com.sun.jersey.multipart.impl.MultiPartWriter;
 /**
  * This example shows how to upload files using POST requests 
  * with encoding type "multipart/form-data".
@@ -23,29 +20,31 @@ import com.sun.jersey.multipart.file.FileDataBodyPart;
  */
 public class FileUploaderClient {
 	
+	
 	public static void main(String[] args) {
 		
-		final Client client = ClientBuilder.newBuilder()
-		        .register(MultiPartFeature.class)
-		        .build();
-		    WebTarget t = client.target("http://localhost:8080/rest/").path("upload");
+		final ClientConfig config = new DefaultClientConfig();
+		config.getClasses().add(MultiPartWriter.class);
+		final Client client = Client.create(config);
 
-		    FileDataBodyPart filePart = new FileDataBodyPart("file", 
-		                                             new File("E:/Job_ISA/history.txt"));
-		    filePart.setContentDisposition(
-		            FormDataContentDisposition.name("file")
-		                                    .fileName("history.txt").build());
+		final WebResource resource = client.resource("http://localhost:8080/fiiplswebservice/rest/")
+				.path("upload");
 
+		final File fileToUpload = new File("E:/Job_ISA/history.txt");
 
-		    MultiPart multipartEntity = new FormDataMultiPart()
-		            .bodyPart(filePart);
+		final FormDataMultiPart multiPart = new FormDataMultiPart();
+		if (fileToUpload != null) 
+		{
+			multiPart.bodyPart(new FileDataBodyPart("file", fileToUpload,
+					MediaType.APPLICATION_OCTET_STREAM_TYPE));
+		}
 
-		    Response response = t.request().post(
-		            Entity.entity(multipartEntity, MediaType.MULTIPART_FORM_DATA));
-		    System.out.println(response.getStatus());
-		    System.out.println(response.readEntity(String.class));
+		final ClientResponse clientResp = resource.type(
+				MediaType.MULTIPART_FORM_DATA_TYPE).post(ClientResponse.class,
+				multiPart);
+		System.out.println("Response: " + clientResp.getClientResponseStatus());
 
-		    response.close();
+		client.destroy();
 		}
 	
 }
