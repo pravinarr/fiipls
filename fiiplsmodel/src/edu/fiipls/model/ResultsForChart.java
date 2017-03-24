@@ -16,6 +16,17 @@ public class ResultsForChart {
 	
 	private double allowedInconsistency;
 	
+	private String columns;
+	
+	
+	public String getColumns() {
+		return columns;
+	}
+
+	public void setColumns(String columns) {
+		this.columns = columns;
+	}
+
 	public String getId() {
 		return id;
 	}

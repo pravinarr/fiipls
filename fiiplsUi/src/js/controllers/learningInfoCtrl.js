@@ -5,6 +5,10 @@ app.controller('learningCtrl', ['$scope', 'metaInfoService', 'httpService', 'use
     // simulated items array
     $scope.items = [];
 
+    $scope.maxslider = 100;
+
+
+
     $scope.labelRefresh = 'Auto Refresh On (Currently data will refresh in every 10s)';
 
     // starts the interval
@@ -15,6 +19,10 @@ app.controller('learningCtrl', ['$scope', 'metaInfoService', 'httpService', 'use
         $scope.labelRefresh = 'Auto Refresh Off';
         $interval.cancel(promise);
     };
+
+    $scope.adjust = function(){
+      $scope.init();
+    }
 
 
     // starting the interval by default
@@ -150,7 +158,7 @@ app.controller('learningCtrl', ['$scope', 'metaInfoService', 'httpService', 'use
         axes: {
             x: {
                 key: "id",
-                 min: 0, max: 300,
+                 min: 0, max: $scope.maxslider,
                 zoomable: true
             },
              y: {type: 'linear'}

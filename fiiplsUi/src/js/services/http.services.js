@@ -14,6 +14,18 @@ angular
         return promise;
     };
 
+    this.getdataForPrediction = function(dat) {
+
+        var promise = $http({
+            cache: false,
+            //url: "data.json",
+            url: url+"/fiiplswebservice/rest/predict/"+dat,
+            method: 'GET'
+
+          });
+        return promise;
+    };
+
     this.getPromiseHttpResult = function(httpPromise) {
         var deferred = $q.defer();
         httpPromise.success(function(data) {

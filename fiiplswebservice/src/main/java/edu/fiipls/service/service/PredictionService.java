@@ -35,6 +35,14 @@ public class PredictionService {
 			BufferedReader reader = new BufferedReader(new FileReader("/home/hduser/classifiers/sample.arff"));
 			Instances instances = new Instances(reader);
 			reader.close();
+			int indexToFind = 0;
+			for(int i=0;i<instances.numAttributes();i++){
+				if(instances.attribute(i).name().equalsIgnoreCase("status")){
+					instances.setClassIndex(i);
+					indexToFind  = i;
+					break;
+				}
+			}
 
 			Classifier classifier1;
 
@@ -57,7 +65,7 @@ public class PredictionService {
 
 			Instance ins = null;
 			ins = helper.makeInstance(instances, true, str);
-			int indexToFind = 0;
+			
 			String correctValue = ins.stringValue(indexToFind);
 			String classifier1Value = null;
 			String classifier2Value = null;
