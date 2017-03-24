@@ -59,8 +59,10 @@ public class StartLearning {
 		bean.setNextCombination("111111111111111");
 		//bean.setNoOfRows(1098953);
 		bean.setLocalInputFile("/home/hduser/Desktop/appointment1.csv");
+		bean.setLocalTestFilePath("/home/hduser/Desktop/appointment1.csv");
 		bean.setNoOfRows(300000);
-		bean.setTestpath("/input/inputData.csv");
+		bean.setTestpath("/input1/inputData.csv");
+		bean.setTestDirectory("/test/");
 		bean.setHeaderFile("/classifier2/model/Classifier2_arffHeader.arff");
 		FIleSaver fs = new FIleSaver(bean);
 		fs.execute(bean);
@@ -68,6 +70,7 @@ public class StartLearning {
 		WekaScoringHadoopJob jj;
 		
 		LearnerController controller  = new LearnerController();
+		//controller.copyClassifiersAndUpload(bean);
 		//controller.initialLearner(bean);
 		//controller.scoreTheLearntModel(bean);
 		System.out.println("Helo");

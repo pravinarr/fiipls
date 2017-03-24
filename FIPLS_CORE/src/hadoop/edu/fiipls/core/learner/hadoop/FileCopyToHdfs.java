@@ -20,17 +20,12 @@ import hadoop.edu.fiipls.core.learner.beans.DataSetBean;
 public class FileCopyToHdfs {
 
 	public void writetoHdfs(DataSetBean bean) throws IOException, URISyntaxException {
-		// 1. Get the instance of COnfiguration
 		Configuration configuration = new Configuration();
 
 		System.out.println("configured filesystem = " + configuration.get("fs.defaultFS"));
-		// 2. Create an InputStream to read the data from local file
 		InputStream inputStream = new BufferedInputStream(new FileInputStream(bean.getLocalInputFile()));
-		// 3. Get the HDFS instance
 		FileSystem hdfs = FileSystem.get(new URI("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort()),
 				configuration);
-		// 4. Open a OutputStream to write the data, this can be obtained from
-		// the FileSytem
 		OutputStream outputStream = hdfs.create(
 				new Path("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort() + "" + bean.getInputPath()),
 				new Progressable() {
@@ -44,22 +39,94 @@ public class FileCopyToHdfs {
 			IOUtils.closeStream(inputStream);
 			IOUtils.closeStream(outputStream);
 		}
+		
+		
+		
+		 inputStream = new BufferedInputStream(new FileInputStream(bean.getLocalTestFilePath()));
+		 hdfs = FileSystem.get(new URI("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort()),
+				configuration);
+		 outputStream = hdfs.create(
+				new Path("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort() + "" + bean.getTestpath()),
+				new Progressable() {
+					public void progress() { 
+						System.out.println("Please wait .. uploading the file");
+					}
+				});
+		try {
+			IOUtils.copyBytes(inputStream, outputStream, 4096, false);
+		} finally {
+			IOUtils.closeStream(inputStream);
+			IOUtils.closeStream(outputStream);
+		}
 	}
 	
-	public void writetoHdfs(DataSetBean bean,String trainingInput) throws IOException, URISyntaxException {
-		// 1. Get the instance of COnfiguration
+	public void writeTesttoHdfs(DataSetBean bean) throws IOException, URISyntaxException {
+		Configuration configuration = new Configuration();
+
+		BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(bean.getLocalTestFilePath()));
+		FileSystem hdfs = FileSystem.get(new URI("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort()),
+				configuration);
+		OutputStream outputStream = hdfs.create(
+				new Path("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort() + "" + bean.getTestpath()),
+				new Progressable() {
+					public void progress() { 
+						System.out.println("Please wait .. uploading the file");
+					}
+				});
+		try {
+			IOUtils.copyBytes(inputStream, outputStream, 4096, false);
+		} finally {
+			IOUtils.closeStream(inputStream);
+			IOUtils.closeStream(outputStream);
+		}
+	}
+	
+	public void writeCreatedtoTesHdfs(DataSetBean bean,String testInput) throws IOException, URISyntaxException {
+		Configuration configuration = new Configuration();
+		InputStream inputStream = new BufferedInputStream(new FileInputStream(testInput));
+		FileSystem hdfs = FileSystem.get(new URI("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort()),
+				configuration);
+		OutputStream outputStream = hdfs.create(
+				new Path("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort() + "" + bean.getTestDirectory()+"inputTrain.csv"),
+				new Progressable() {
+					public void progress() {
+						System.out.println("Please wait .. uploading the file");
+					}
+				});
+		try {
+			IOUtils.copyBytes(inputStream, outputStream, 4096, false);
+		} finally {
+			IOUtils.closeStream(inputStream);
+			IOUtils.closeStream(outputStream);
+		}
+	}
+	
+	public void writetoHdfs(DataSetBean bean,String trainingInput,String testInput) throws IOException, URISyntaxException {
 		Configuration configuration = new Configuration();
 
 		System.out.println("configured filesystem = " + configuration.get("fs.defaultFS"));
-		// 2. Create an InputStream to read the data from local file
 		InputStream inputStream = new BufferedInputStream(new FileInputStream(trainingInput));
-		// 3. Get the HDFS instance
 		FileSystem hdfs = FileSystem.get(new URI("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort()),
 				configuration);
-		// 4. Open a OutputStream to write the data, this can be obtained from
-		// the FileSytem
 		OutputStream outputStream = hdfs.create(
 				new Path("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort() + "" + bean.getOutputPath()+"inputTrain.csv"),
+				new Progressable() {
+					public void progress() {
+						System.out.println("Please wait .. uploading the file");
+					}
+				});
+		try {
+			IOUtils.copyBytes(inputStream, outputStream, 4096, false);
+		} finally {
+			IOUtils.closeStream(inputStream);
+			IOUtils.closeStream(outputStream);
+		}
+		
+		inputStream = new BufferedInputStream(new FileInputStream(testInput));
+		hdfs = FileSystem.get(new URI("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort()),
+				configuration);
+		outputStream = hdfs.create(
+				new Path("hdfs://" + bean.getHdfsPath() + ":" + bean.getHdfsPort() + "" + bean.getTestDirectory()+"inputTrain.csv"),
 				new Progressable() {
 					public void progress() {
 						System.out.println("Please wait .. uploading the file");

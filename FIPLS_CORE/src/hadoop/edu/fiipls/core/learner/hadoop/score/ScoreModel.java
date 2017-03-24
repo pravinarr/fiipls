@@ -87,7 +87,7 @@ public class ScoreModel extends Configured implements Tool {
 
 		conf.set("fs.default.name", "hdfs://" + jobBean.getHdfsPath());
 		FileInputFormat.setInputPaths(job, new Path("hdfs://" + jobBean.getHdfsPath() + ":" + jobBean.getHdfsPort() + ""
-				+ jobBean.getOutputPath() + "inputTrain.csv"));
+				+ jobBean.getTestDirectory() + "inputTrain.csv"));
 		FileOutputFormat.setOutputPath(job,
 				new Path("hdfs://" + jobBean.getHdfsPath() + ":" + jobBean.getHdfsPort() + "" + "/scoreResults/"));
 

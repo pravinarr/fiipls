@@ -8,19 +8,29 @@ public class DataSetBean extends BaseJobBean {
 	
 	String classifier2Path;
 	
+	String currentColumns;
+	
 	int noOfOnes;
+	
+	ResultBean currentResult;
+	
+	int classIndex;
 	
 	public int getNoOfOnes() {
 		return noOfOnes;
 	}
 
+	public String getCurrentColumns() {
+		return currentColumns;
+	}
+
+	public void setCurrentColumns(String currentColumns) {
+		this.currentColumns = currentColumns;
+	}
+
 	public void setNoOfOnes(int noOfOnes) {
 		this.noOfOnes = noOfOnes;
 	}
-
-	ResultBean currentResult;
-	
-	int classIndex;
 	
 	public int getClassIndex() {
 		return classIndex;

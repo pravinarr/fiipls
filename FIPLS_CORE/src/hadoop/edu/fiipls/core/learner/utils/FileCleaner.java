@@ -19,6 +19,8 @@ public class FileCleaner {
 		fileUrl.add("/classifier1/");
 		fileUrl.add("/classifier2/");
 		fileUrl.add("/scoreResults/");
+		fileUrl.add("/test/");
+		fileUrl.add("/input/");
 	}
 
 	public static void clean() throws IOException {
@@ -41,4 +43,7 @@ public class FileCleaner {
 		this.fileUrl = fileUrl;
 	}
 	
+	public static void main(String[] args) throws IOException{
+		FileCleaner.clean();
+	}
 }

@@ -27,6 +27,8 @@ public class BaseJobBean {
 	String classifier2Config;
 
 	String testpath;
+	
+	String testDirectory;
 
 	String columnInfo;
 
@@ -34,13 +36,7 @@ public class BaseJobBean {
 	
 	double noOfColumns;
 	
-	public double getNoOfColumns() {
-		return noOfColumns;
-	}
-
-	public void setNoOfColumns(double noOfColumns) {
-		this.noOfColumns = noOfColumns;
-	}
+	String localTestFilePath;
 
 	ResultBean bestResults;
 	
@@ -59,6 +55,33 @@ public class BaseJobBean {
 		this.inputSplit = bean.getInputSplit();
 		this.headerFile = bean.getHeaderFile();
 		this.attributeToFind = bean.getAttributeToFind();
+		this.allowedInconsistency = bean.getAllowedInconsistency();
+		this.testpath = bean.getTestpath();
+		this.testDirectory = bean.getTestDirectory();
+	}
+	
+	public String getLocalTestFilePath() {
+		return localTestFilePath;
+	}
+
+	public void setLocalTestFilePath(String localTestFilePath) {
+		this.localTestFilePath = localTestFilePath;
+	}
+
+	public double getNoOfColumns() {
+		return noOfColumns;
+	}
+
+	public void setNoOfColumns(double noOfColumns) {
+		this.noOfColumns = noOfColumns;
+	}
+	
+	public String getTestDirectory() {
+		return testDirectory;
+	}
+
+	public void setTestDirectory(String testDirectory) {
+		this.testDirectory = testDirectory;
 	}
 	
 	public String getLocalInputFile() {
