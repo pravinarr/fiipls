@@ -1,42 +1,67 @@
 package hadoop.edu.fiipls.core.learner.initiator;
 
+import java.util.Properties;
+
 import hadoop.edu.fiipls.core.learner.beans.DataSetBean;
 import hadoop.edu.fiipls.core.learner.controller.LearnerController;
 import hadoop.edu.fiipls.core.learner.hadoop.FIleSaver;
-import weka.distributed.hadoop.WekaScoringHadoopJob;
+import hadoop.edu.fiipls.core.learner.utils.LoadProperties;
 import weka.gui.SysErrLog;
 
 public class StartLearning {
 
 	public static void main(String[] args) throws Exception {   
-		/*if(args.length < 1){
+		if(args.length < 1){
 			System.out.println("Missing properties file path to start the learing process. Try to run with the properties file "
 					+ "in the command line argument");
 			System.exit(1);
-		}*/
+		}
 		
-		//Properties runProp = LoadProperties.loadProperties(args[0]);
+		Properties runProp = LoadProperties.loadProperties(args[0]);
 		
 		DataSetBean bean = new DataSetBean();
-	/*	bean.setHdfsPath(runProp.getProperty(""));
-		bean.setHdfsPort(runProp.getProperty(""));
-		bean.setYarnPath(runProp.getProperty(""));
-		bean.setYarnPort(runProp.getProperty(""));
-		bean.setAttributeToFind(runProp.getProperty(""));
-		bean.setInputPath(runProp.getProperty(""));
-		bean.setInputSplit(runProp.getProperty(""));
-		bean.setClassifier1Config(runProp.getProperty(""));
-		bean.setClassifier2Config(runProp.getProperty(""));
-		bean.setOutputPath(runProp.getProperty(""));
-		bean.setAllowedInconsistency(Double.parseDouble(runProp.getProperty("")));
-		bean.setClassifier1Path(runProp.getProperty(""));
-		bean.setClassifier2Path(runProp.getProperty(""));
-		bean.setColumnInfo(runProp.getProperty(""));
-		bean.setNextCombination("");
-		bean.setNoOfRows(200000);
-		bean.setTestpath(runProp.getProperty(""));
-		bean.setOutputPath(runProp.getProperty(""));*/
+
 		
+		
+		
+		
+		bean.setHdfsPath(runProp.getProperty("hdfsPath"));
+		bean.setHdfsPort(runProp.getProperty("hdfsPort"));
+		bean.setYarnPath(runProp.getProperty("yarnPath"));
+		bean.setYarnPort(runProp.getProperty("yarnPort"));
+		bean.setRestService(runProp.getProperty("restservice"));
+		//bean.setAttributeToFind("CAND_ICI");
+		bean.setAttributeToFind(runProp.getProperty("attributeToFind"));
+		bean.setInputPath(runProp.getProperty("inputPath"));
+		//bean.setInputSplit("\\|");
+		bean.setNoOfColumns(runProp.getProperty("columnInfo").split(",").length);
+		bean.setInputSplit(runProp.getProperty("inputSplit"));
+		bean.setClassifier1Config(runProp.getProperty("classifier1Config"));
+		bean.setClassifier2Config(runProp.getProperty("classifier2Config"));
+		bean.setOutputPath(runProp.getProperty("outputPath"));
+		bean.setAllowedInconsistency(Double.parseDouble(runProp.getProperty("allowedInconsistency")));
+		bean.setClassifier1Path(runProp.getProperty("classifier1Path"));
+		bean.setClassifier2Path(runProp.getProperty("classifier2Path"));
+		bean.setColumnInfo(runProp.getProperty("columnInfo"));
+		bean.setNextCombination(runProp.getProperty("nextCombination"));
+		bean.setLocalInputFile(runProp.getProperty("localInputFile"));
+		bean.setLocalTestFilePath(runProp.getProperty("localTestFilePath"));
+		bean.setNoOfRows(Integer.parseInt(runProp.getProperty("noOfRows")));
+		bean.setTestpath(runProp.getProperty("testpath"));
+		bean.setTestDirectory(runProp.getProperty("testDirectory"));
+		bean.setHeaderFile("/classifier2/model/Classifier2_arffHeader.arff");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		
 		bean.setHdfsPath("HadoopMaster");
 		bean.setHdfsPort("9000");
@@ -63,18 +88,18 @@ public class StartLearning {
 		bean.setNoOfRows(300000);
 		bean.setTestpath("/input1/inputData.csv");
 		bean.setTestDirectory("/test/");
-		bean.setHeaderFile("/classifier2/model/Classifier2_arffHeader.arff");
+		bean.setHeaderFile("/classifier2/model/Classifier2_arffHeader.arff");*/
 		FIleSaver fs = new FIleSaver(bean);
 		fs.execute(bean);
 		
-		WekaScoringHadoopJob jj;
+	
 		
-		LearnerController controller  = new LearnerController();
+		//LearnerController controller  = new LearnerController();
 		//controller.copyClassifiersAndUpload(bean);
 		//controller.initialLearner(bean);
 		//controller.scoreTheLearntModel(bean);
 		System.out.println("Helo");
-		controller.startLearning(bean);
+		//controller.startLearning(bean);
 		//controller.createNamesFile(bean, bean.getColumnInfo());
 
 	}

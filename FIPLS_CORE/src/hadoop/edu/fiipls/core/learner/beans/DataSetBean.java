@@ -16,6 +16,16 @@ public class DataSetBean extends BaseJobBean {
 	
 	int classIndex;
 	
+	String restService;
+	
+	public String getRestService() {
+		return restService;
+	}
+
+	public void setRestService(String restService) {
+		this.restService = restService;
+	}
+
 	public int getNoOfOnes() {
 		return noOfOnes;
 	}
